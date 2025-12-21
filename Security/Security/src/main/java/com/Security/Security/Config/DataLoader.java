@@ -26,6 +26,7 @@ public class DataLoader {
                 user.setRole(Set.of(Role.ADMIN));
                 user.setEnabled(true);
 
+
                 userRepository.save(user);
             }
         };
