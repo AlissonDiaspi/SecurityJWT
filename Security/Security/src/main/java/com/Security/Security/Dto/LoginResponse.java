@@ -1,7 +1,7 @@
 package com.Security.Security.Dto;
 
 public record LoginResponse( // record para enviar a resposta do login
-    String message
+    String accessToken,
+    String refreshToken
 
-) {
-}
+) {}

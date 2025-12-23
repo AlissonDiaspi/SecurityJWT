@@ -1,12 +1,9 @@
 package com.Security.Security.Config;
 
-
 import com.Security.Security.Security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,34 +19,30 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                // API REST
+                // DESATIVA CSRF
                 .csrf(csrf -> csrf.disable())
 
-                // JWT = stateless
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                // LIBERA IFRAME PARA H2
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 
-                // Regras de acesso
+                // API STATELESS
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                // REGRAS DE ACESSO
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/auth/login",
-                                "/auth/register",
-                                "/",
-                                "/h2-console/**"
-                        ).permitAll()
+                        // H2 Console
+                        .requestMatchers("/h2-console/**").permitAll()
+                        // Endpoints de autenticação
+                        .requestMatchers("/auth/**").permitAll()
+                        // Home ou raiz pública (opcional)
+                        .requestMatchers("/").permitAll()
+                        // Demais endpoints requerem autenticação
                         .anyRequest().authenticated()
                 )
 
-                // Filtro JWT
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                );
+                // JWT FILTER
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-
-
 }

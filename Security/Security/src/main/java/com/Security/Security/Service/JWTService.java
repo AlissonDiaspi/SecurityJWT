@@ -31,9 +31,9 @@ public class JWTService {
     }
 
 
-    public String generateToken(String email) {
+    public String generateToken(String email, Set<String> roles) {
         return Jwts.builder()
-                .setSubject(email) // ✅ subject = identidade do usuário
+                .setSubject(email) //  subject = identidade do usuário
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)

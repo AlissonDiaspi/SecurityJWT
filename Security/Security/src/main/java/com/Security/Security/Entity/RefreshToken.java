@@ -18,19 +18,19 @@ import java.time.Instant;
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        private Long id; // identificador único do token
 
-        @Column(nullable = false, unique = true, length = 512)
+        @Column(nullable = false, unique = true, length = 512) // token de atualização
         private String token;
 
-        @OneToOne(fetch = FetchType.LAZY)
+        @OneToOne(fetch = FetchType.LAZY) // relacionamento com a entidade User
         @JoinColumn(name = "user_id", nullable = false)
         private User user;
 
-        @Column(nullable = false)
+        @Column(nullable = false) // data de expiração
         private Instant expiryDate;
 
-        @Column(nullable = false)
+        @Column(nullable = false) // indica se o token foi revogado
         private boolean revoked;
     }
 
