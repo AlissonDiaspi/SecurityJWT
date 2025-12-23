@@ -20,13 +20,21 @@ public class DataLoader {
     ) {
         return args -> {
             if (userRepository.count() == 0) {
+
+                // Usuário ADMIN
+                User admin = new User();
+                admin.setEmail("admin@email.com");
+                admin.setPassword(passwordEncoder.encode("123456"));
+                admin.setRoles(Set.of(Role.ADMIN)); // Supondo que a entidade User tenha Set<Role> roles
+                admin.setEnabled(true);
+                userRepository.save(admin);
+
+                // Usuário USER
                 User user = new User();
-                user.setEmail("admin@email.com");
-                user.setPassword(passwordEncoder.encode("123456"));
-                user.setRole(Set.of(Role.ADMIN));
+                user.setEmail("user@email.com");
+                user.setPassword(passwordEncoder.encode("1234567"));
+                user.setRoles(Set.of(Role.USER));
                 user.setEnabled(true);
-
-
                 userRepository.save(user);
             }
         };

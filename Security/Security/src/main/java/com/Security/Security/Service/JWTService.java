@@ -2,6 +2,7 @@ package com.Security.Security.Service;
 
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -22,7 +23,7 @@ public class JWTService {
     private static final String SECRET_KEY =
             "minha-chave-super-secreta-com-pelo-menos-32-caracteres";
 
-    // ⏱ 1 hora
+    //  1 hora
     private static final long EXPIRATION_TIME = 1000 * 60 * 60;
 
 
@@ -54,7 +55,7 @@ public class JWTService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(getSignKey()) // ✅ NÃO verifyWith
+                .setSigningKey(getSignKey()) //  NÃO verifyWith
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -70,6 +71,13 @@ public class JWTService {
     public boolean isTokenValid(String token, String userEmail) { // validar token
         final String username = extractUsername(token);
         return username.equals(userEmail) && !isTokenExpired(token);
+    }
+    public String extractUsernameEvenIfExpired(String token) {
+        try {
+            return extractUsername(token);
+        } catch (ExpiredJwtException e) {
+            return e.getClaims().getSubject();
+        }
     }
 
 }

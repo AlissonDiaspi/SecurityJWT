@@ -1,6 +1,5 @@
 package com.Security.Security.Controller;
 
-import com.Security.Security.Config.PasswordConfig;
 import com.Security.Security.Dto.LoginRequest;
 import com.Security.Security.Dto.LoginResponse;
 import com.Security.Security.Dto.RefreshTokenRequest;
@@ -12,17 +11,15 @@ import com.Security.Security.Repository.RefreshTokenRepository;
 import com.Security.Security.Repository.UserRepository;
 import com.Security.Security.Service.JWTService;
 import com.Security.Security.Service.RefreshTokenService;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -79,7 +76,7 @@ public class AuthController {
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(Set.of(Role.USER));
+        user.setRoles(Set.of(Role.USER));
         user.setEnabled(true);
 
         userRepository.save(user);
@@ -114,6 +111,26 @@ public class AuthController {
         );
 
 
+
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestBody Map<String, String> requestMap) {
+
+        String refreshToken = requestMap.get("refreshToken");
+        if (refreshToken == null) {
+            return ResponseEntity.badRequest()
+                    .body(Map.of("error", "Refresh token não fornecido"));
+        }
+
+        try {
+            refreshTokenService.revokeToken(refreshToken);
+            return ResponseEntity.ok(Map.of("message", "Logout realizado com sucesso"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(Map.of("error", "Erro no logout: " + e.getMessage()));
+        }
+    }
+
 
 }
