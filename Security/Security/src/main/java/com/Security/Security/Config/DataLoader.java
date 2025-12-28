@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Set;
 
 @Configuration
-public class DataLoader {
+public class DataLoader { // Classe para carregar dados iniciais no banco de dados
 
     @Bean
     CommandLineRunner loadData(

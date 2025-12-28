@@ -14,7 +14,7 @@ import java.time.Instant;
 
     @NoArgsConstructor
     @AllArgsConstructor
-    public class RefreshToken {
+    public class RefreshToken { // Entidade que representa o token de atualização no banco de dados
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 @Slf4j
-public class JwtAuthenticationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter { // filtro que intercepta requisições para validar o JWT
 
     private final JWTService jwtService;
     private final UserRepository userRepository;

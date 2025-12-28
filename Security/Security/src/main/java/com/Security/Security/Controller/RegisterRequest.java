@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterRequest {
+public class RegisterRequest { // Classe para representar a requisição de registro de usuário
     private String email;
     private String password;
 

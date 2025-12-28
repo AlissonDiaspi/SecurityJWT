@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint { // Classe personalizada para lidar com tentativas de acesso não autenticado
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

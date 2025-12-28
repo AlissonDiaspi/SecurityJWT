@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler { // Classe para tratar exceções globais na aplicação
     // Recurso não encontrado
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleRuntime(

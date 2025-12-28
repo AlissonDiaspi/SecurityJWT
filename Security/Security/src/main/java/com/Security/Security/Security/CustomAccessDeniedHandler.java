@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+public class CustomAccessDeniedHandler implements AccessDeniedHandler { // Classe personalizada para tratar erros de acesso negado (403)
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 

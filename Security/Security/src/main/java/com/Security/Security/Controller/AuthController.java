@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/auth")
 
-public class AuthController {
+public class AuthController { // controller para autenticação, registro, refresh token e logout
 
     private final AuthenticationManager authenticationManager;
     private final JWTService jwtService;

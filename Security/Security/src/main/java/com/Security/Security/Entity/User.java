@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User implements UserDetails { // Entidade que representa o usuário no sistema e implementa UserDetails para integração com Spring Security
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController { // endpoint para testar se as roles estavam acessando as suas respectivas rotas
 
     private final UserRepository userRepository;
 

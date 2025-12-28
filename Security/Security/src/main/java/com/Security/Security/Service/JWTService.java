@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 @Service
-public class JWTService {
+public class JWTService { //  serviço para manipulação de tokens JWT
 
 
     private static final String SECRET_KEY =
