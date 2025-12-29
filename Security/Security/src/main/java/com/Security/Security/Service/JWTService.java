@@ -21,7 +21,7 @@ public class JWTService { //  serviço para manipulação de tokens JWT
 
 
     private static final String SECRET_KEY =
-            "minha-chave-secreta-projeto-JWT-Security-login-register-logout-refresh-token";
+            "minha-chave-secreta-projeto-JWT-Security-login-register-logout-refresh-token"; // chave secreta
 
     //  1 hora
     private static final long EXPIRATION_TIME = 1000 * 60 * 60;
