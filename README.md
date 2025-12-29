@@ -129,8 +129,10 @@ Após iniciar o projeto, acesse: http://localhost:8080/swagger-ui.html
 Autor:
 Alisson Dias Pinheiro
 📧 Email: Alissondias7@outlook.com	
- 🔗 LinkedIn: https://www.linkedin.com/in/alisson-dias-0a8b77356/
- 🐙 GitHub: https://github.com/AlissonDiaspi
+
+🔗 LinkedIn: https://www.linkedin.com/in/alisson-dias-0a8b77356/
+ 
+🐙 GitHub: https://github.com/AlissonDiaspi
 
 
 
