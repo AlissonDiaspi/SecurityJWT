@@ -87,14 +87,20 @@ security.jwt.refresh-expiration=604800000
 Autenticação:
 
 POST: /auth/register - Cria um novo usuário
+
 POST: /auth/login - Autêntica e retorna tokens
+
 POST: /auth/refresh - Gera novo Access Token
+
 POST: /auth/logout - Efetua logout
 
 Protegidos: 
 GET: /me - USER/ADMIN 
+
 GET: /user/** - USER/ADMIN
+
 GET: /admin/** - apenas ADMIN
+
 Tokens JWT devem ser enviados no header - Authorization: Bearer access_token
 
 ---
