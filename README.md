@@ -4,7 +4,7 @@ Esta é uma API REST desenvolvida em Spring Boot com autenticação baseada em J
 
 ---
 
-##  Funcionalidadesw
+##  Funcionalidades
 
 -  Registro de usuários  
 -  Login com geração de **Access Token + Refresh Token**  
