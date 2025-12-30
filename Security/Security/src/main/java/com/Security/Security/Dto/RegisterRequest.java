@@ -1,4 +1,4 @@
-package com.Security.Security.Controller;
+package com.Security.Security.Dto;
 
 
 import lombok.Getter;
